@@ -1,142 +1,231 @@
-# template
-
-
-
-**template for pathology atlas repositories**
 
 
 
 
-> see [make-html-WSI](https://github.com/pathologyatlas/make-html-WSI) for more information and [TODO](https://github.com/pathologyatlas/TODO) to add cases
 
 
 
 
-> do not forget to activate github pages for the new repository
 
-
-
-
-```zsh
-
-vips dzsave HE.svs HE
 
 ```
-
-
-
-
-```{r language template, echo=FALSE, include=TRUE}
-
+r language BS10, echo=FALSE, include=TRUE
 source("./R/language.R")
+output_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+```
+
+
+```
+asis granüler hücreli tümör, kolon , echo = (language == "TR")
+## BS10 - granüler hücreli tümör, kolon {#sec-BS10 }
+```
+
+
+```
+asis granular cell tumor, colon , echo = (language == "EN")
+## BS10 - granular cell tumor, colon {#sec-BS10 }
+```
+
+
+
+
+
+
+```
+r BS10 screenshot HE1, eval=TRUE, include=FALSE
+if (!file.exists("./screenshots/BS10-HE1_screenshot.png")) {
+webshot2::webshot(
+  url = "https://images.patolojiatlasi.com/BS10/HE1.html",
+  file = "./screenshots/BS10-HE1_screenshot.png"
+)
+}
+```
+
+
+
+
+
+
+```
+r BS10 screenshot HE2, eval=TRUE, include=FALSE
+if (!file.exists("./screenshots/BS10-HE2_screenshot.png")) {
+webshot2::webshot(
+  url = "https://images.patolojiatlasi.com/BS10/HE2.html",
+  file = "./screenshots/BS10-HE2_screenshot.png"
+)
+}
+```
+
+
+
+
+
+::::: panel-tabset
+
+
+### WSI - Link
+
+
+
+
+
+
+
+```
+asis, echo = (language == "TR")
+
+**granüler hücreli tümör, kolon**
+
+
+[![Tam Ekran Görmek İçin Resmi Tıklayın](./screenshots/BS10-HE1_screenshot.png){width="25%"}](https://images.patolojiatlasi.com/BS10/HE1.html) [Tam Ekran Görmek İçin Resmi Tıklayın](https://images.patolojiatlasi.com/BS10/HE1.html)
+```
+
+```
+asis, echo = (language == "EN")
+
+**granular cell tumor, colon**
+
+[![Click for Full Screen WSI](./screenshots/BS10-HE1_screenshot.png){width="25%"}](https://images.patolojiatlasi.com/BS10/HE1.html) [Click for Full Screen WSI](https://images.patolojiatlasi.com/BS10/HE1.html)
 
 ```
 
 
 
 
-```{asis, echo = (language == "TR")}
 
-## TemplateTR
+
+```
+asis, echo = (language == "TR")
+
+**granüler hücreli tümör, kolon**
+
+
+[![Tam Ekran Görmek İçin Resmi Tıklayın](./screenshots/BS10-HE2_screenshot.png){width="25%"}](https://images.patolojiatlasi.com/BS10/HE2.html) [Tam Ekran Görmek İçin Resmi Tıklayın](https://images.patolojiatlasi.com/BS10/HE2.html)
+```
+
+```
+asis, echo = (language == "EN")
+
+**granular cell tumor, colon**
+
+[![Click for Full Screen WSI](./screenshots/BS10-HE2_screenshot.png){width="25%"}](https://images.patolojiatlasi.com/BS10/HE2.html) [Click for Full Screen WSI](https://images.patolojiatlasi.com/BS10/HE2.html)
 
 ```
 
 
 
 
-```{asis, echo = (language == "EN")}
 
-## TemplateEN
+### WSI
+
+
+
+
+
+
+
 
 ```
-
-
-
-
-```{asis, echo = (language == "TR")}
-
-**templateTR**
-
-
-[https://images.patolojiatlasi.com/template/HE.html](https://images.patolojiatlasi.com/template/HE.html)
-
+asis, echo = ((language=="TR") & (output_type=="html"))
 Mikroskopik görüntüleri inceleyin:
 
-<iframe src="https://images.patolojiatlasi.com/template/HE.html" style="height:400px;width:100%;" data-external="1"></iframe>
+<iframe src="https://images.patolojiatlasi.com/BS10/HE1.html" style="height:600px;width:100%;" data-external="1"></iframe>
 
 ```
 
-```{comment}
+
+
+
+
+```
+asis, echo = ((language == "EN") & (output_type=="html"))
+
+See Microscopy with viewer:
+
+<iframe src="https://images.patolojiatlasi.com/BS10/HE1.html" style="height:600px;width:100%;" data-external="1"></iframe>
+
+```
+
+
+
+
+
+
+
+```
+asis, echo = ((language=="TR") & (output_type=="html"))
+Mikroskopik görüntüleri inceleyin:
+
+<iframe src="https://images.patolojiatlasi.com/BS10/HE2.html" style="height:600px;width:100%;" data-external="1"></iframe>
+
+```
+
+
+
+
+
+```
+asis, echo = ((language == "EN") & (output_type=="html"))
+
+See Microscopy with viewer:
+
+<iframe src="https://images.patolojiatlasi.com/BS10/HE2.html" style="height:600px;width:100%;" data-external="1"></iframe>
+
+```
+
+
+
+
+
+### Diagnosis
+
+
+```
 asis, echo = (language == "TR")
 
 
+::: {.callout-tip collapse="true" appearance="default" icon="true"}
+### Tanı için tıklayın
 
-<button id="tani-case-template-btn">Tanıyı Göster</button>
-<div id="answer-template" style="display: none;">templateTR</div>
+granüler hücreli tümör, kolon
 
-<script>
-  const showAnswer-templateBtn = document.getElementById('tani-case-template-btn');
-  const answer-template = document.getElementById('answer-template');
-
-  showAnswer-templateBtn.addEventListener('click', () => {
-    if (answer-template.style.display === 'none') {
-      answer-template.style.display = 'block';
-      showAnswer-templateBtn.textContent = 'Tanıyı Gizle';
-    } else {
-      answer-template.style.display = 'none';
-      showAnswer-templateBtn.textContent = 'Tanıyı Göster';
-    }
-  });
-</script>
-
-
-
-{{< video https://www.youtube.com/embed/ >}}
-
+:::
 
 
 ```
 
 
-
-```{asis, echo = (language == "EN")}
-
-**templateEN**
-
-
-[https://images.patolojiatlasi.com/template/HE.html](https://images.patolojiatlasi.com/template/HE.html)
-
-See Microscopy with viewer: 
-
-<iframe src="https://images.patolojiatlasi.com/template/HE.html" style="height:400px;width:100%;" data-external="1"></iframe>
-
 ```
-
-
-```{comment}
 asis, echo = (language == "EN")
 
-<button id="dx-case-template-btn">Show the Diagnosis</button>
-<div id="answer-template" style="display: none;">templateEN</div>
 
-<script>
-  const showAnswer-templateBtn = document.getElementById('dx-case-template-btn');
-  const answer-template = document.getElementById('answer-template');
+::: {.callout-tip collapse="true" appearance="default" icon="true"}
+### Click for Diagnosis
 
-  showAnswer-templateBtn.addEventListener('click', () => {
-    if (answer-template.style.display === 'none') {
-      answer-template.style.display = 'block';
-      showAnswer-templateBtn.textContent = 'Hide the Diagnosis';
-    } else {
-      answer-template.style.display = 'none';
-      showAnswer-templateBtn.textContent = 'Show the Diagnosis';
-    }
-  });
-</script>
+granular cell tumor, colon
 
-
-{{< video https://www.youtube.com/embed/ >}}
-
-
+:::
 
 ```
+
+
+
+
+
+
+
+
+
+:::::
+
+
+
+
+
+
+
+
+
+
+
+
